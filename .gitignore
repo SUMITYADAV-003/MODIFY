@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+Backend/node_modules/
+Frontend/node_modules/
+
+# Package lock
+package-lock.json
+Backend/package-lock.json
+Frontend/package-lock.json
+
+# Environment variables
+.env
+Backend/.env
+Frontend/.env
+
+# Build folder
+Frontend/dist/
+Frontend/build/
