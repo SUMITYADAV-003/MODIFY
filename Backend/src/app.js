@@ -18,6 +18,8 @@ const userRouter = require("./routes/auth.routes.js");
 
 
 
+
+
 app.use(express.json())
 app.use(cookieParser());
 
@@ -25,6 +27,7 @@ app.use(cookieParser());
 
 // use routes
 app.use("/api/auth", userRouter);
+
 
 
 
