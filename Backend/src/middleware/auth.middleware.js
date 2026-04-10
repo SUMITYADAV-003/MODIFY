@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-const BlackListingModels = require("../models/blacklist.models.js");
+const jwt = require("jsonwebtoken");;
+const redis = require("../config/cache.js");
 
 async function authUser(req,res,next) {
   const token = req.cookies.token;
@@ -8,6 +8,14 @@ async function authUser(req,res,next) {
   if(!token){
     return res.status(401).json({
       message: "Token Not provided",
+    })
+  }
+
+  const isTokenBlackloisted = await redis.get(token)
+
+  if(isTokenBlackloisted) {
+    return res.status(401).json({
+      message: "Invalid token",
     })
   }
 
