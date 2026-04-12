@@ -1,4 +1,5 @@
 const jwt  = require("jsonwebtoken");
+const redis = require("../config/cache.js");
 
 
 async function authuser(req,res,next) {
@@ -7,6 +8,13 @@ async function authuser(req,res,next) {
   if(!token){
     return res.status(401).json({
       message: "Token Not provided ",
+    })
+  }
+
+  const isTokenBlackloisted = await redis.get(token);
+  if(isTokenBlackloisted) {
+    return res.status(404).json({
+      message: "Invalid token"
     })
   }
 

@@ -12,7 +12,7 @@ async function authUser(req,res,next) {
   }
 
   const isTokenBlackloisted = await redis.get(token)
-
+  
   if(isTokenBlackloisted) {
     return res.status(401).json({
       message: "Invalid token",

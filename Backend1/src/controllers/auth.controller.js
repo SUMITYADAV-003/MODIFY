@@ -1,6 +1,7 @@
 const userModel = require("../models/user.models.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const redis = require("../config/cache.js");
 
 
 
@@ -104,6 +105,9 @@ async function logOutUser(req,res) {
    const token = req.cookies.token
 
     res.clearCookie("token");
+    
+    await redis.set(token, Date.now().toString(), "EX", 60 * 60);
+    
 
     res.status(201).json({
       message: "user logout sucessfully",
