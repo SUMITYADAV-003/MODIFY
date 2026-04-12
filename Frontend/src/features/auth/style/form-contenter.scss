@@ -1,0 +1,75 @@
+
+
+
+main{
+  display: flex;
+  height: 100vh;
+
+
+
+  justify-content: center;
+  align-items: center;
+
+  .red{
+    position: absolute;
+  inset: 0;
+  background: #00292D;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+  .green {
+  position: absolute;
+  inset: 0;
+  background: #01212E;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+  h1{
+    text-align: center;
+  }
+
+  .form-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  
+
+
+    form{
+      min-width: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 5;
+
+
+      input{
+        border: none;
+        overflow: hidden ;
+        outline: none;
+
+        padding-inline: 1rem;
+        padding-block: 0.5rem;
+        border-radius: 0.5rem;
+
+      }
+    }
+
+    button{
+      padding-inline: 1rem;
+      padding-block: 0.2rem;
+      border-radius: 0.5rem;
+      color: #4F5961;
+      background-color: #FFFFFF;
+      font-weight: 900;
+     
+      
+    }
+
+    button:active {
+  transform: scale(0.95);
+  
+}
+
+
+  }
+}
