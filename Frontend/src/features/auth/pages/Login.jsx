@@ -1,5 +1,6 @@
 import React from 'react'
-import "../style/form-contenter.scss"
+import "../style/form-contenter.scss";
+import {Link} from "react-router"
 
 const Login = () => {
   return (
@@ -15,6 +16,7 @@ const Login = () => {
           <input type="password" placeholder='Enter Password' />
           <button>Login</button>
         </form>
+        <p>Don't have an account ? <Link to={"/register"} >Create One.</Link></p>
 
       </div>
     </main>
