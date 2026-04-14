@@ -1,5 +1,9 @@
 
-
+@mixin flex-column($gap: 0rem){
+ display: flex;
+ flex-direction: column;
+ gap: $gap;
+}
 
 main{
   display: flex;
@@ -28,17 +32,13 @@ main{
   }
 
   .form-container{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  
+    @include flex-column(1rem);
+   
 
 
     form{
       min-width: 350px;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+      @include flex-column(0.5rem);
       z-index: 5;
 
 
