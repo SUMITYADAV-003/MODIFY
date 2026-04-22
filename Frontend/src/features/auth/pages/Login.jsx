@@ -14,7 +14,7 @@ const Login = () => {
         <form >
           <Formgroup label="Email" placeholder="Enter Your Emial" />
           <Formgroup label="Password" placeholder="Enter Your Password" />
-          <button className='button'>Submit</button>
+          <button className='button'>Login</button>
 
 
         </form>
