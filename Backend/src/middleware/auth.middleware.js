@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-
+const redies = require("../config/cache.js");
 
 
 
@@ -9,6 +9,14 @@ async function authUser(req,res,next) {
   if(!token) {
     return res.status(404).json({
       message: "Token not provided",
+    })
+  }
+
+  const isTokenBlacklisted = await redies.get(token);
+
+  if(!isTokenBlacklisted) {
+    return res.status(401).json({
+      message: "Invalid token"
     })
   }
 

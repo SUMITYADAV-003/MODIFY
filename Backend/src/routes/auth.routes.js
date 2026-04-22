@@ -10,6 +10,7 @@ const router = Router()
 router.post("/register", AuthController.registerUser);
 router.post("/login", AuthController.loginUser);
 router.get("/get-me",authMiddleware.authUser, AuthController.getMe);
+router.get("/logout",authMiddleware.authUser, AuthController.logOutUser);
 
 
 

@@ -14,3 +14,6 @@ redis.on("connect", () => {
 redis.on("error", (err) => {
   console.log(err, "getting redies error");
 })
+
+
+module.exports = redis;

@@ -1,6 +1,7 @@
 const userModel  = require("../models/user.models.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const redies = require("../config/cache.js");
 
 
 async function registerUser(req,res) {
@@ -97,11 +98,23 @@ async function getMe(req,res) {
   
 }
 
+async function logOutUser(req,res) {
+  const token = req.cookie.token;
+
+  res.clearCookie("token")
+  await redies.set(token,Date.now().toString(), "EX", 60 * 60 )
+
+  res.status(200).json({
+    message: "User logOut successfully",
+  })
+  
+}
+
 
 
 module.exports = {
   registerUser,
   loginUser,
   getMe,
- 
+  logOutUser, 
 }
