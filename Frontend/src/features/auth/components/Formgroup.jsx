@@ -4,6 +4,7 @@ const Formgroup = ({label, placeholder, value, onChange}) => {
   return (
     <div className='form-group'>
       <label htmlFor={label}>{label}</label>
+      <input type="text" id={label} name={label} placeholder={placeholder} value={value} name="" id="" />
     </div>
   )
 }
