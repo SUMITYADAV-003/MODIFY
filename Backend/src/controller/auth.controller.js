@@ -99,7 +99,7 @@ async function getMe(req,res) {
 }
 
 async function logOutUser(req,res) {
-  const token = req.cookie.token;
+  const token = req.cookies.token;
 
   res.clearCookie("token")
   await redies.set(token,Date.now().toString(), "EX", 60 * 60 )

@@ -14,7 +14,7 @@ async function authUser(req,res,next) {
 
   const isTokenBlacklisted = await redies.get(token);
 
-  if(!isTokenBlacklisted) {
+  if(isTokenBlacklisted) {
     return res.status(401).json({
       message: "Invalid token"
     })
