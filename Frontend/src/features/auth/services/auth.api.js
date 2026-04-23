@@ -6,7 +6,7 @@ const api = axios.create({
 })
 
 export async function register({email, username, password}) {
-  const response = await axios.post("/api/auth/register", {
+  const response = await api.post("/api/auth/register", {
     username,email, password
   })
 
@@ -14,22 +14,22 @@ export async function register({email, username, password}) {
   
 }
 
-export async function login({emial, password, username}) {
+export async function login({email, password, username}) {
 
-  const response = await axios.post("/api/auth/login", {
-    username,emial,password
+  const response = await api.post("/api/auth/login", {
+    email,username,password
   })
   return response.data;
 }
 
 export async function getMe() {
-  const response = await axios.get("/api/auth/get-me" )
+  const response = await api.get("/api/auth/get-me" )
 
   return response.data;
   
 }
-export async function logOut() {
-  const response = await axios.get("/api/auth/logout" )
+export async function logout() {
+  const response = await api.get("/api/auth/logout" )
 
   return response.data;
   

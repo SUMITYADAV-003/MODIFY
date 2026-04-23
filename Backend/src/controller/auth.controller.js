@@ -49,8 +49,8 @@ async function loginUser(req,res) {
 
   const user = await userModel.findOne({
     $or: [
-      {username},
       {email},
+      {username},
     ]
   }).select("+password")
 
@@ -76,7 +76,7 @@ async function loginUser(req,res) {
   res.cookie("token", token);
 
   res.status(200).json({
-    message: "user login successfully",
+    message: "user login in successfully",
     user: {
       id: user.id,
       username: user.username,
