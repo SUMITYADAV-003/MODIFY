@@ -8,6 +8,7 @@ const routes =  Router();
 
 
 routes.post("/",upload.single("song"),songController.uploadSong);
+routes.get("/",songController.getSong);
 
 
 module.exports = routes;
