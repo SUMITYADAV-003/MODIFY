@@ -11,43 +11,45 @@ async function uploadSong(req, res) {
   }
 
   const songBuffer = req.file.buffer;
-  const { mood } = req.body;
+  const { mood, title } = req.body;
 
-  // ✅ Read tags once and store results
+  // ✅ Read tags once
   const tags = id3.read(songBuffer);
 
-  if (!tags.title) {
+  // ✅ Remove .mp3 extension from filename for clean title
+  const filenameTitle = req.file.originalname.replace(/\.[^/.]+$/, "");
+
+  // ✅ Try all 3 sources in order
+  const songTitle = tags.title || title || filenameTitle;
+
+  if (!songTitle) {
     return res.status(400).json({
-      error: "MP3 file must have a title in its metadata"
+      error: "Could not determine song title"
     });
   }
 
   const hasImage = Boolean(tags.image?.imageBuffer);
 
   try {
-    // ✅ Start DB save + uploads ALL at the same time
-    // Build all promises together upfront
     const uploadPromises = [
       storageService.uploadFile({
         buffer: songBuffer,
-        filename: `${tags.title}.mp3`,
+        filename: `${songTitle}.mp3`,
         folder: "/cohort-2/moodify/songs"
       }),
       hasImage
         ? storageService.uploadFile({
             buffer: tags.image.imageBuffer,
-            filename: `${tags.title}.jpeg`,
+            filename: `${songTitle}.jpeg`,
             folder: "/cohort-2/moodify/posters"
           })
-        : Promise.resolve(null) // ✅ No waiting, resolve immediately
+        : Promise.resolve(null)
     ];
 
-    // ✅ Both uploads run truly in parallel
     const [songFile, posterFile] = await Promise.all(uploadPromises);
 
-    // ✅ Save to DB right after uploads finish
     const song = await songModel.create({
-      title: tags.title,
+      title: songTitle,           // ✅ uses fallback title
       url: songFile.url,
       posteUrl: posterFile?.url || null,
       mood
@@ -59,7 +61,6 @@ async function uploadSong(req, res) {
     });
 
   } catch (error) {
-    // ✅ Catch errors so requests don't hang forever
     console.error("Upload failed:", error.message);
     res.status(500).json({
       error: "Song upload failed. Please try again."
