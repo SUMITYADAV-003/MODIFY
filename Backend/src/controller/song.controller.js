@@ -82,4 +82,23 @@ async function getSong(req,res) {
   })
   
 }
-module.exports = { uploadSong, getSong };
+
+async function getSongsByMood(req,res){
+  const {mood} = req.params;
+
+  const song = await songModel.find({mood})
+  
+  res.status(201).json({
+    message: "get song Accoding to the mood",
+    song,
+  })
+}
+
+
+
+
+
+
+
+
+module.exports = { uploadSong, getSong ,getSongsByMood};

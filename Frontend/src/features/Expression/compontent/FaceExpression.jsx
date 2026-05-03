@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { detect, init } from "../utils/utils";
+import "../compontent/FaceExpression.scss"
 
 
 export default function FaceExpression({ onClick = () => { } }) {
@@ -40,7 +41,7 @@ export default function FaceExpression({ onClick = () => { } }) {
                 playsInline
             />
             <h2>{expression}</h2>
-            <button onClick={handleClick} >Detect expression</button>
+            <button onClick={handleClick} className="button" >Detect expression</button>
         </div>
     );
 }

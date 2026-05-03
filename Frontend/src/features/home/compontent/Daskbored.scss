@@ -1,0 +1,14 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: 100vh;
+  gap: 20px;
+  padding: 20px;
+  background: #020617;
+}
+
+.left, .center, .right {
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 20px;
+}

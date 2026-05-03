@@ -14,3 +14,11 @@ export async function getSong({mood}) {
   return response.data;
 
 }
+
+export async function getSongsByMood(mood) {
+  const response = await api.get(`/api/songs/moods/${mood}`);
+
+  console.log(response.data);
+  return response.data;
+  
+}
