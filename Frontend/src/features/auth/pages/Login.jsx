@@ -22,21 +22,24 @@ const Login = () => {
   return (
     <main className="login-page">
       <div className="form-container">
-        <h1>Login</h1>
+        <h1>Welcome back</h1>
         <form onSubmit={handleSubmit}>
           <Formgroup
             label="Email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
-            placeholder="Enter Your Emial"
+            placeholder="Enter your email"
           />
           <Formgroup
             label="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter Your Password"
+            placeholder="Enter your password"
+            type="password"
           />
-          <button type="submit" className="button">Login</button>
+          <button type="submit" className="button" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
         </form>
 
         <p>

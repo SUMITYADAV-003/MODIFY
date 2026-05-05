@@ -1,13 +1,20 @@
 import React from 'react'
 import { useAuth } from '../hook/useAuth';
-import { Navigate, useNavigate } from 'react-router'
+import { Navigate } from 'react-router'
+import "../styles/Login.scss";
 
 const Protected = ({ children }) => {
   const { user, loading } = useAuth();
-   const navigate = useNavigate();
    
   if (loading) {
-    return <h1>loading...</h1>;
+    return (
+      <main className="login-page">
+        <div className="form-container">
+          <h1>Loading Moodify...</h1>
+          <p>Please wait while we prepare your music space.</p>
+        </div>
+      </main>
+    );
   }
 
   if (!user) {

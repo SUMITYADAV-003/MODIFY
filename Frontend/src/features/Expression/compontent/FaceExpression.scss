@@ -1,0 +1,79 @@
+.face-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.face-card__top,
+.face-card__result {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.face-card__top p,
+.face-card__result span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.face-card__top h2 {
+  font-size: 1.4rem;
+}
+
+.status-dot {
+  background: var(--warning);
+  border-radius: 999px;
+  height: 12px;
+  width: 12px;
+}
+
+.status-dot--ready {
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(49, 196, 141, 0.13);
+}
+
+.face-card__preview {
+  align-items: center;
+  background: #05070b;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  min-height: 320px;
+  overflow: hidden;
+  position: relative;
+}
+
+.face-card__preview video {
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  transform: scaleX(-1);
+  width: 100%;
+}
+
+.face-card__preview span {
+  color: var(--muted);
+  inset: auto;
+  padding: 1rem;
+  position: absolute;
+  text-align: center;
+}
+
+.face-card__result {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.85rem;
+}
+
+.face-card__result strong {
+  color: var(--accent);
+  text-transform: capitalize;
+}
+
+.face-card__button {
+  width: 100%;
+}

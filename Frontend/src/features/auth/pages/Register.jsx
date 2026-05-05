@@ -22,26 +22,29 @@ const Register = () => {
   return (
     <main className="register-page">
       <div className="form-container">
-        <h1>Register user</h1>
+        <h1>Create account</h1>
         <form onSubmit={handleSubmit}>
           <Formgroup
-            label="User"
+            label="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Enter Your User"
+            placeholder="Enter your username"
           />
           <Formgroup
             label="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter Your Email"
+            placeholder="Enter your email"
           />
           <Formgroup
-           label="password"
+           label="Password"
            value={password}
            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter Your password" />
-          <button type="submit" className="button">Register</button>
+            placeholder="Create a password"
+            type="password" />
+          <button type="submit" className="button" disabled={loading}>
+            {loading ? "Creating..." : "Register"}
+          </button>
         </form>
         <p>
           Already have an account? <Link to="/login">Login</Link>
